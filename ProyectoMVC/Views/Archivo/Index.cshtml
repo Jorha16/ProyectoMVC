@@ -1,0 +1,44 @@
+﻿@model ProyectoMVC.Models.ViewModels.ArchivoViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@if(ViewBag.Message !=null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.Message
+    </div>
+}
+
+@using(Html.BeginForm("Save","Archivo", FormMethod.Post, new { enctype = "multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+   <div class="row">
+       <div class="col-md-6 col-lg-offset-3">
+           <div class="form-group">
+               @Html.LabelFor(d => d.Archivo1)
+               @Html.TextBoxFor(d => d.Archivo1, new { type = "File", accept = "png" })
+               @Html.ValidationMessageFor(d => d.Archivo1, "", new { @class = "text-danger" })
+           </div>
+           <div class="form-group">
+               @Html.LabelFor(d => d.Archivo2)
+               @Html.TextBoxFor(d => d.Archivo2, new { type = "File", accept = "png" })
+               @Html.ValidationMessageFor(d => d.Archivo2, "", new { @class = "text-danger" })
+           </div>
+
+           <div class="form-group">
+               @Html.LabelFor(d => d.cadena)
+               @Html.TextBoxFor(d => d.cadena, new { @class = "form-control"})
+               @Html.ValidationMessageFor(d => d.cadena, "", new { @class = "text-danger" })
+           </div>
+           <div class="form-group" style="text-align:right;">
+               <input  type ="submit" class="btn btn-success"  value="Guardar"/>
+
+           </div>
+
+       </div>
+    </div>
+}
+
